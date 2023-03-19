@@ -31,8 +31,8 @@ public class Magacin implements MagacinInterfejs {
 		if (!artikli.contains(a)) {
 			throw new IllegalArgumentException("Dati artikal ne postoji u magacinu");
 		}
-		if (a.getKolicina() == 0) {
-			throw new IllegalArgumentException("Istrosene su zalihe datog artikla");
+		if (a.getKolicina() == 1) {
+			artikli.remove(a);
 		}
 
 		a.setKolicina(a.getKolicina() - 1);

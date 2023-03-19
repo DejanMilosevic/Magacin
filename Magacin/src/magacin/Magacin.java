@@ -12,7 +12,7 @@ public class Magacin implements MagacinInterfejs {
 	@Override
 	public void dodajArtikal(Artikal a) {
 		if (a == null) {
-			return;
+			throw new NullPointerException("Artikal ne sme imati null vrednost");
 		}
 
 		if (!artikli.contains(a)) {
@@ -21,19 +21,18 @@ public class Magacin implements MagacinInterfejs {
 		} else {
 			a.setKolicina(a.getKolicina() + 1);
 		}
-
 	}
 
 	@Override
 	public void izbaciArtikal(Artikal a) {
 		if (a == null) {
-			return;
+			throw new NullPointerException("Artikal ne sme imati null vrednost");
 		}
 		if (!artikli.contains(a)) {
-			return;
+			throw new IllegalArgumentException("Dati artikal ne postoji u magacinu");
 		}
 		if (a.getKolicina() == 0) {
-			return;
+			throw new IllegalArgumentException("Istrosene su zalihe datog artikla");
 		}
 
 		a.setKolicina(a.getKolicina() - 1);
@@ -42,7 +41,7 @@ public class Magacin implements MagacinInterfejs {
 	@Override
 	public Artikal pronadjiArtikal(int sifra) {
 		if (sifra < 0) {
-			return null;
+			throw new IllegalArgumentException("Sifra artikla ne sme biti manja od nule");
 		}
 
 		for (Artikal ar : artikli) {
@@ -50,7 +49,7 @@ public class Magacin implements MagacinInterfejs {
 				return ar;
 			}
 		}
-		return null;
+		throw new IllegalArgumentException("Ne postoji dati artikal u magacinu");
 	}
 
 }
